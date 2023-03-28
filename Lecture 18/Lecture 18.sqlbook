@@ -35,7 +35,7 @@ United States Congress dataset
 
 Create table from codebook/dictionary
 -- SQLBook: Code
--- Active: 1674444757671@@127.0.0.1@5432@postgres
+-- Active: 1679947952649@@127.0.0.1@5432@postgres
 -- We start by deleting the old table
 -- SQL does not allow you to create a table if one already exists
 DROP TABLE IF EXISTS us_congress_members;
@@ -86,6 +86,8 @@ Try it yourself!
 -- SQLBook: Code
 -- Write your own code
 
+
+
 DROP TABLE IF exists bills_subjects;
 
 CREATE TABLE bills_subjects(
@@ -124,6 +126,7 @@ FROM 'D:\GitHub\qtm151spring2023\Lecture 18\data\us_congress_members.csv' ```
 WITH (DELIMITER ',', FORMAT csv, HEADER MATCH);
 ```
 -- SQLBook: Code
+-- Active: 1679947952649@@127.0.0.1@5432@postgres
 -- The argument associaated with COPY is the dataset in our server
 -- The argument associaated with FROM is a filepath name
 -- There are three options specified in WITH:
@@ -131,6 +134,7 @@ WITH (DELIMITER ',', FORMAT csv, HEADER MATCH);
 -----  FORMAT indicates that this is a CSV
 -----  HEADER MATCH indicates that the first row contains column
 -----  names and should be ignored when importing.
+
 -- SQLBook: Markup
 <font size = "5">
 
@@ -157,7 +161,7 @@ Try it yourself!
 SELECT * FROM us_congress_members
 ```
 -- SQLBook: Code
--- Active: 1674444757671@@127.0.0.1@5432@postgres
+-- Active: 1679947952649@@127.0.0.1@5432@postgres
 -- Write your own code
 -- Note in the instructor's computer this is:
 -- You just have to change the FROM argument
@@ -167,7 +171,9 @@ SELECT * FROM us_congress_members
 -- WITH (DELIMITER ',', FORMAT csv, HEADER MATCH);
 
 
-
+COPY us_congress_members
+FROM '/private/tmp/data/us_congress_members.csv'
+WITH (DELIMITER ',', FORMAT csv, HEADER MATCH);
 
 -- SQLBook: Markup
 <font size = "5">
